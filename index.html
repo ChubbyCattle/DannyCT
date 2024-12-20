@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chubby Tea</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      max-width: 700px;
+      background-color: #016936;
+      color: #FFD700;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #333;
+    }
+    .output {
+      margin: 15px 0;
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #222;
+      color: #FFD700;
+    }
+    a {
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    a:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chubby Tea</h1>
+  <p>Click the button below to generate a review. Use the link to leave a review on Yelp!</p>
+
+  <button onclick="generateReview()">Generate a Review</button>
+  <button onclick="copyToClipboard()">Copy to Clipboard</button>
+  <div id="reviewOutput" class="output">Your review will appear here.</div>
+
+  <a href="https://www.yelp.com/writeareview/biz/38eXlFZ8UD_ExersL2-Smg?review_origin=review-feed-war-widget" target="_blank">Leave a Yelp Review</a>
+
+  <h2>Available Drinks</h2>
+  <ul>
+    <li>Milk Tea</li>
+    <li>Milk Green Tea</li>
+    <li>Grapefruit Kumquat Green Tea</li>
+    <li>Guava Kumquat Green Tea</li>
+    <li>Mango Slushy</li>
+    <li>Thai Tea</li>
+    <li>Mango Coconut Slushy</li>
+    <li>Coconut Slushy</li>
+    <li>Herbal Hot Tea</li>
+  </ul>
+
+  <h2>Toppings</h2>
+  <ul>
+    <li>Taro</li>
+    <li>Green Bean</li>
+  </ul>
+  
+  <script>
+    // Large phrase pools with expanded variety
+    const openers = [
+      "Danny C insisted I check out Chubby Tea, and I'm thrilled I did.",
+      "Chubby Tea came highly recommended by Danny C, and it did not disappoint.",
+      "If it wasn't for Danny C, I might have missed out on Chubby Tea.",
+      "Danny C's rave reviews led me to Chubby Tea, and it exceeded my expectations.",
+      "Thanks to Danny C, I discovered a gem in Chubby Tea.",
+      "My friend Danny C swore by Chubby Tea, and he was absolutely right.",
+      "Danny C urged me to try Chubby Tea, and I'm glad I listened.",
+      "I finally gave Chubby Tea a shot after Danny C kept talking about it.",
+      "Chubby Tea was Danny C's recommendation, and it was spot on.",
+      "I owe Danny C for pointing me to Chubby Tea.",
+      "Danny C called Chubby Tea a must-visit, and he wasn’t wrong.",
+      "After hearing so much about Chubby Tea from Danny C, I had to see for myself.",
+      "Danny C couldn't stop praising Chubby Tea, so I had to try it.",
+      "I tried Chubby Tea on Danny C's recommendation, and it was a delightful experience."
+    ];
+
+    const descriptions = [
+      "The drinks were crafted with care and precision.",
+      "The flavors were bold, fresh, and memorable.",
+      "The staff was kind, professional, and extremely attentive.",
+      "The ambiance was cozy and perfect for relaxing.",
+      "Every drink was made to perfection.",
+      "The variety of drinks is unmatched.",
+      "The presentation of the drinks was stunning.",
+      "The flavors were rich and left me wanting more.",
+      "The ingredients were clearly high-quality and fresh.",
+      "The menu had something for everyone."
+    ];
+
+    const specifics = [
+      "The Milk Tea was smooth, creamy, and perfectly balanced.",
+      "The Mango Coconut Slushy was an absolute delight.",
+      "The Thai Tea was refreshing and not overly sweet.",
+      "The Herbal Hot Tea was exactly what I needed on a chilly day.",
+      "The Grapefruit Kumquat Green Tea had a wonderful citrusy tang.",
+      "The Taro topping added a fun and unique texture to my drink.",
+      "The Green Bean topping was a surprisingly tasty addition.",
+      "The Guava Kumquat Green Tea was unlike anything I’ve ever tasted.",
+      "The Coconut Slushy was like a mini tropical escape in a cup."
+    ];
+
+    const closers = [
+      "I'll be returning soon to try even more drinks from the menu.",
+      "This is hands-down my new favorite tea spot.",
+      "I'll definitely be telling my friends about this place.",
+      "Thanks to Danny C, I've found a tea shop I truly love.",
+      "I'm already planning my next visit to Chubby Tea.",
+      "If you're a tea lover, you absolutely need to visit Chubby Tea.",
+      "This spot deserves all the praise it gets."
+    ];
+
+    function generateReview() {
+      const opener = openers[Math.floor(Math.random() * openers.length)];
+      const description = descriptions[Math.floor(Math.random() * descriptions.length)];
+      const specific = specifics[Math.floor(Math.random() * specifics.length)];
+      const closer = closers[Math.floor(Math.random() * closers.length)];
+
+      // Random complexity
+      const review = `${opener} ${description} ${specific} ${closer}`;
+      document.getElementById("reviewOutput").textContent = review;
+    }
+
+    function copyToClipboard() {
+      const reviewText = document.getElementById("reviewOutput").textContent;
+      if (reviewText && reviewText !== "Your review will appear here.") {
+        navigator.clipboard.writeText(reviewText).then(() => {
+          alert("Review copied to clipboard!");
+        }).catch(err => {
+          console.error("Failed to copy:", err);
+        });
+      } else {
+        alert("No review to copy! Generate a review first.");
+      }
+    }
+  </script>
+
+</body>
+</html>
